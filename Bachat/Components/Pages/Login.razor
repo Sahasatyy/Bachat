@@ -1,0 +1,46 @@
+﻿@page "/login"
+
+<div class="card">
+    <h2>Bachat - A personal expense tracker</h2>
+    <p>Track your expenses with ease</p>
+
+    <div class="input-group">
+        <label for="username">Username</label>
+        <input @bind="username" type="text" id="username" placeholder="Enter your username" />
+    </div>
+
+    <div class="input-group">
+        <label for="password">Password</label>
+        <input @bind="password" type="password" id="password" placeholder="Enter your password" />
+    </div>
+
+    <div class="input-group">
+        <label for="currency">Preferred Currency</label>
+        <select id="currency" required>
+            <option value="nrs">NRS</option>
+            <option value="inr">INR</option>
+            <option value="usd">Dollar</option>
+            <option value="eur">Euros</option>
+        </select>
+    </div>
+
+    <button class="btn" @onclick="HandleLogin">Sign In</button>
+</div>
+
+@code {
+    private string username;
+    private string password;
+
+    private void HandleLogin()
+    {
+        // Add login logic here (e.g., authentication)
+        if (!string.IsNullOrWhiteSpace(username) && !string.IsNullOrWhiteSpace(password))
+        {
+            Console.WriteLine($"Logged in as: {username}");
+        }
+        else
+        {
+            Console.WriteLine("Please enter valid credentials.");
+        }
+    }
+}
