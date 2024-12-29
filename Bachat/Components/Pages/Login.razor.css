@@ -1,0 +1,88 @@
+﻿/* General Reset */
+/** {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #27ae60;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}*/
+
+/* Card Container */
+/*.card {
+    background-color: #fff;
+    width: 450px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 50px;
+    text-align: center;
+}
+
+    .card h2 {
+        margin-bottom: 8px;
+        font-size: 18px;
+        color: #333;
+    }
+
+    .card p {
+        color: #777;
+        margin-bottom: 20px;
+        font-size: 14px;
+    }*/
+
+/* Input Fields */
+/*.input-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+    .input-group label {
+        display: block;
+        font-size: 12px;
+        color: #333;
+        margin-bottom: 6px;
+    }
+
+    .input-group input,
+    .input-group select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        outline: none;
+    }*/
+
+        /* Focus effect for both input and select */
+        /*.input-group input:focus,
+        .input-group select:focus {
+            border-color: #3498db;
+        }*/
+
+/* Button */
+/*.btn {
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+    background-color: #3498db;*/ /* Blue */
+    /*color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+    .btn:hover {
+        background-color: #2980b9;
+    }
+
+    .btn i {
+        margin-right: 5px;
+    }*/
