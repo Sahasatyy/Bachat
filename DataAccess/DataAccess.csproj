@@ -24,7 +24,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Service\Interface\" />
+		<ProjectReference Include="..\DataModel\DataModel.csproj" />
 	</ItemGroup>
 
 </Project>

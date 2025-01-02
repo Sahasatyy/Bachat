@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using DataAccess.Service;
+using DataAccess.Service.Interface;
+using Microsoft.Extensions.Logging;
+using MudBlazor.Services;
 
 namespace Bachat
 {
@@ -19,6 +22,9 @@ namespace Bachat
 #if DEBUG
     		builder.Services.AddBlazorWebViewDeveloperTools();
     		builder.Logging.AddDebug();
+            builder.Services.AddMudServices();
+            builder.Services.AddScoped<IUserInterface, UserService>();
+
 #endif
 
             return builder.Build();

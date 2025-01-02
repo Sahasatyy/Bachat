@@ -1,5 +1,5 @@
-﻿/* General Reset */
-/** {
+﻿a General Reset 
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -12,10 +12,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-}*/
+}
 
-/* Card Container */
-/*.card {
+ Card Container 
+.card {
     background-color: #fff;
     width: 450px;
     border-radius: 10px;
@@ -34,10 +34,10 @@ body {
         color: #777;
         margin-bottom: 20px;
         font-size: 14px;
-    }*/
+    }
 
-/* Input Fields */
-/*.input-group {
+ Input Fields 
+.input-group {
     text-align: left;
     margin-bottom: 20px;
 }
@@ -56,21 +56,21 @@ body {
         border: 1px solid #ddd;
         border-radius: 5px;
         outline: none;
-    }*/
+    }
 
-        /* Focus effect for both input and select */
-        /*.input-group input:focus,
+         Focus effect for both input and select 
+        .input-group input:focus,
         .input-group select:focus {
             border-color: #3498db;
-        }*/
+        }
 
-/* Button */
-/*.btn {
+ Button 
+.btn {
     display: inline-block;
     width: 100%;
     padding: 10px;
-    background-color: #3498db;*/ /* Blue */
-    /*color: #fff;
+    background-color: #3498db;  Blue 
+    color: #fff;
     font-size: 14px;
     font-weight: bold;
     border: none;
@@ -85,4 +85,4 @@ body {
 
     .btn i {
         margin-right: 5px;
-    }*/
+    }
