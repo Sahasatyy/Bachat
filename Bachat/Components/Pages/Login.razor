@@ -89,34 +89,45 @@
         margin-right: 5px;
     }
 
+    .error-message {
+        color: red;
+        font-size: 14px;
+        margin-top: 10px;
+    }
+
 </style>
 <div class="card">
     <h2>Bachat - A personal expense tracker</h2>
     <p>Track your expenses with ease</p>
-   <div class="form-login">
-    <form class="text-center" @onsubmit="HandleLogin">
-    <div class="input-group">
-        <label for="username">Username</label>
-        <input @bind="user.Username" type="text" id="username" placeholder="Enter your username" />
-    </div>
+    <div class="form-login">
+        <form class="text-center" @onsubmit="HandleLogin">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input @bind="user.Username" type="text" id="username" placeholder="Enter your username" />
+            </div>
 
-    <div class="input-group">
-        <label for="password">Password</label>
-        <input @bind="user.Password" type="password" id="password" placeholder="Enter your password" />
-    </div>
-            
-    @* <div class="input-group"> *@
-    @*     <label for="currency">Preferred Currency</label> *@
-    @*     <select id="currency" required> *@
-    @*         <option value="nrs">NRS</option> *@
-    @*         <option value="inr">INR</option> *@
-    @*         <option value="usd">Dollar</option> *@
-    @*         <option value="eur">Euros</option> *@
-    @*     </select> *@
-    @* </div> *@
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input @bind="user.Password" type="password" id="password" placeholder="Enter your password" />
+            </div>
 
-    <button class="btn" type="submit">Sign In</button>
+            <div class="input-group">
+                <label for="currency">Preferred Currency</label>
+                <select @bind="user.PreferredCurrency" id="currency" required>
+                    <option value="nrs">NRS</option>
+                    <option value="inr">INR</option>
+                    <option value="usd">Dollar</option>
+                    <option value="eur">Euros</option>
+                </select>
+            </div>
+
+            <button class="btn" type="submit">Sign In</button>
         </form>
+        @if (!string.IsNullOrEmpty(ErrorMessage))
+        {
+            <p class="error-message">@ErrorMessage</p>
+        }
+    </div>
 </div>
-</div>
+
 

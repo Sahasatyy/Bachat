@@ -6,7 +6,7 @@ namespace Bachat.Components.Pages
     {
         private string? ErrorMessage;
         public UserModel user { get; set; } = new();
-        private async void HandleLogin()
+        private async Task HandleLogin()
         {
             if (await UserService.Login(user))
             {
@@ -17,5 +17,7 @@ namespace Bachat.Components.Pages
                 ErrorMessage = "Invalid username or password.";
             }
         }
+
     }
 }
+
