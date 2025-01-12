@@ -57,3 +57,38 @@ body {
     .logout-button:hover {
         background-color: #c0392b;
     }
+.logout_confirm {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+
+.logout-confirm-button {
+    padding: 8px 15px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    .logout-confirm-button:hover {
+        background-color: #45a049;
+    }
+
+.cancel-button {
+    padding: 8px 15px;
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    .cancel-button:hover {
+        background-color: #c9302c;
+    }

@@ -1,246 +1,137 @@
 ﻿@page "/addtransaction"
-
+@using DataModel.Model
 <style>
-
     * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     }
 
     body {
-        background-color: #fff; /* White background */
+    background-color: #fff;
     }
 
-    /* Main Content */
     .content {
-        max-width: 500px;
-        margin: 20px auto;
-        padding: 20px 30px;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        background-color: #fff;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
     }
 
-    /* Title */
     h2 {
-        font-size: 20px;
-        margin-bottom: 10px;
+    font-size: 20px;
+    margin-bottom: 10px;
     }
 
     p {
-        color: #777;
-        margin-bottom: 20px;
-        font-size: 14px;
+    color: #777;
+    margin-bottom: 20px;
+    font-size: 14px;
     }
 
-    /* Transaction Type */
-    .transaction-type {
-        display: flex;
-        gap: 10px;
-        margin-bottom: 20px;
-    }
-
-    .transaction-btn {
-        flex: 1;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        text-align: center;
-        cursor: pointer;
-        font-size: 14px;
-        background-color: #fff;
-    }
-
-        .transaction-btn.active {
-            border: 1px solid #27ae60;
-            background-color: #e9fdf3;
-            color: #27ae60;
-        }
-
-    /* Input Groups */
     .input-group {
-        margin-bottom: 15px;
+    margin-bottom: 15px;
     }
 
-        .input-group label {
-            display: block;
-            font-size: 12px;
-            margin-bottom: 5px;
-            color: #555;
-        }
+    .input-group label {
+    display: block;
+    font-size: 12px;
+    margin-bottom: 5px;
+    color: #555;
+    }
 
-        .input-group input,
-        .input-group textarea,
-        .input-group select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
+    .input-group input,
+    .input-group textarea,
+    .input-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    }
 
-    /* Buttons */
     .buttons {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
     }
 
-        .buttons button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 14px;
-            cursor: pointer;
-        }
+    .buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    }
 
     .save-btn {
-        background-color: #0066ff;
-        color: #fff;
+    background-color: #0066ff;
+    color: #fff;
     }
 
     .cancel-btn {
-        background-color: #ddd;
-        color: #555;
+    background-color: #ddd;
+    color: #555;
     }
-
-    /* Close Button */
-    .close-btn {
-        font-size: 20px;
-        color: #333;
-        cursor: pointer;
-        font-weight: bold;
-        position: absolute;
-        top: 10px;
-        right: 15px;
-    }
-
-        .close-btn:hover {
-            color: red;
-        }
-
 </style>
 
-<div class="content">
-    <h2>Add New Transaction</h2>
+<!-- Add Transaction Form -->
+<div class="content" id="addTransactionForm">
+    <h2>Add Transaction</h2>
     <p>Record your financial activity</p>
+    <form @onsubmit = "submitTransaction">
+        <!-- Transaction Type -->
+        <div class="input-group">
+            <label for="transactionType">Transaction Type</label>
+            <select id="transactionType" @bind="Transaction.TransactionType">
+                <option>Select a transaction type</option>
+                @foreach (var tag in Enum.GetValues(typeof(TransactionType)))
+                {
+                    <option value="@tag">@tag</option>
+                }
+            </select>
+        </div>
 
-    <!-- Transaction Type -->
-    <div class="transaction-type">
-        <div class="transaction-btn active" id="creditBtn">⬇ Credit</div>
-        <div class="transaction-btn" id="debitBtn">⬆ Debit</div>
-        <div class="transaction-btn" id="debtBtn">💰 Debt</div>
-    </div>
+        <!-- Amount -->
+        <div class="input-group" >
+            <label for="amount">Amount</label>
+            <input type="text" id="amount" placeholder="Rs.0.00" @bind="Transaction.TransactionAmount"/>
+        </div>
 
-    <!-- Amount -->
-    <div class="input-group">
-        <label for="amount">Amount</label>
-        <input type="text" id="amount" placeholder="Rs.0.00" />
-    </div>
+        <!-- Notes -->
+        <div class="input-group">
+            <label for="notes">Notes (Optional)</label>
+            <textarea id="notes" rows="3" placeholder="Add any additional details..." @bind="Transaction.TransactionNotes"></textarea>
+        </div>
 
-    <!-- Notes -->
-    <div class="input-group">
-        <label for="notes">Notes (Optional)</label>
-        <textarea id="notes"
-                  rows="3"
-                  placeholder="Add any additional details..."></textarea>
-    </div>
+        <!-- Tags -->
+        <div class="input-group">
+            <label for="tags">Tags</label>
+            <select id="tags" @bind = "Transaction.TransactionTag">
+                <option>Select an appropriate tag</option>
+                @foreach (var tag in Enum.GetValues(typeof(TransactionTag)))
+                {
+                    <option value="@tag">@tag</option>
+                }
+            </select>
+        </div>
 
-    <!-- Tags -->
-    <div class="input-group">
-        <label for="tags">Tags</label>
-        <select id="tags">
-            <option>Select an appropriate tag</option>
-            <option value="expense">Yearly</option>
-            <option value="expense">Monthly</option>
-            <option value="expense">Food</option>
-            <option value="expense">Drinks</option>
-            <option value="expense">Clothes</option>
-            <option value="expense">Gadgets</option>
-            <option value="expense">Miscellaneous</option>
-            <option value="expense">Fuel</option>
-            <option value="expense">Rent</option>
-            <option value="expense">EMI</option>
-            <option value="expense">Party</option>
-            <option value="income">Salary</option>
-        </select>
-    </div>
-
-    <!-- Source (hidden for Credit/Debit) -->
-    <div class="input-group" id="sourceGroup" style="display: none">
-        <label for="source">Source</label>
-        <textarea id="source"
-                  rows="2"
-                  placeholder="Add any Source details..."></textarea>
-    </div>
-
-    <!-- Due Date (hidden for Credit/Debit) -->
-    <div class="input-group" id="dueDateGroup" style="display: none">
-        <label for="dueDate">Due Date</label>
-        <input type="date" id="dueDate" />
-    </div>
-
-    <!-- Buttons -->
-    <div class="buttons">
-        <button class="save-btn" onclick="submitTransaction()">
-            Save Transaction
-        </button>
-        <button class="cancel-btn" @onclick="cancel">
-            Cancel
-        </button>
-    </div>
+        <!-- Buttons -->
+        <div class="buttons">
+            <button class="save-btn" type="submit">Save transaction</button>
+            <button class="cancel-btn" @onclick="cancel">Cancel</button>
+        </div>
+    </form>
+    @if (message == "success")
+    {
+        <div class="alert-success"> @message</div>
+    }
+    else
+    {
+        <div class="alert-danger"> @message</div>
+    }
 </div>
-
-<script>
-    // Select Buttons
-    const creditBtn = document.getElementById("creditBtn");
-    const debitBtn = document.getElementById("debitBtn");
-    const debtBtn = document.getElementById("debtBtn");
-
-    // Select Fields
-    const sourceGroup = document.getElementById("sourceGroup");
-    const dueDateGroup = document.getElementById("dueDateGroup");
-
-    // Function to Toggle Active State
-    function toggleActive(button) {
-      creditBtn.classList.remove("active");
-      debitBtn.classList.remove("active");
-      debtBtn.classList.remove("active");
-      button.classList.add("active");
-    }
-
-    // Event Listeners
-    creditBtn.addEventListener("click", () => {
-      toggleActive(creditBtn);
-      sourceGroup.style.display = "none";
-      dueDateGroup.style.display = "none";
-    });
-
-    debitBtn.addEventListener("click", () => {
-      toggleActive(debitBtn);
-      sourceGroup.style.display = "none";
-      dueDateGroup.style.display = "none";
-    });
-
-    debtBtn.addEventListener("click", () => {
-      toggleActive(debtBtn);
-      sourceGroup.style.display = "block";
-      dueDateGroup.style.display = "block";
-    });
-
-    function submitTransaction() {
-      // Code to submit the transaction details
-      // For example, send data to server via an API
-      console.log("Transaction submitted");
-
-      // Redirect to dashboard after submission
-      redirectToDashboard();
-    }
-
-    function redirectToDashboard() {
-      window.location.href = "dashboard.html";
-    }
-</script>
 
 

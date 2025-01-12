@@ -14,7 +14,6 @@ namespace DataAccess.Service
         {
             _users = LoadUsers();
 
-            // Add default admin user if the file is empty
             if (!_users.Any())
             {
                 _users.Add(new UserModel { Username = UserSeeding.Username, Password = UserSeeding.Password });

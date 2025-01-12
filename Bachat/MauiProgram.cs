@@ -24,6 +24,7 @@ namespace Bachat
     		builder.Logging.AddDebug();
             builder.Services.AddMudServices();
             builder.Services.AddScoped<IUserInterface, UserService>();
+            builder.Services.AddScoped<ITransactionInterface, TransactionService>();
 
 #endif
 

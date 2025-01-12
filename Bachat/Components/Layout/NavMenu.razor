@@ -5,5 +5,12 @@
     <div class="button-container">
           <button id="addTransaction" class="add-transaction-button" @onclick="addtransaction">Add transaction</button>
           <button class="logout-button" @onclick="logout">Log out</button>
+          @if (logout_confirm){
+            <div class="logout-confirm">
+                <p>Are you sure you want to log out?</p>
+                <button class="logout-confirm-button" @onclick="confirmLogout">Yes</button>
+                <button class="logout-confirm-button" @onclick="cancelLogout">No</button>
+            </div>
+          }
     </div>
 </div>
