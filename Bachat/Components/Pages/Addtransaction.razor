@@ -9,7 +9,7 @@
     }
 
     body {
-    background-color: #fff;
+    background-color: beige;
     }
 
     .content {
@@ -77,12 +77,11 @@
     }
 </style>
 
-<!-- Add Transaction Form -->
 <div class="content" id="addTransactionForm">
     <h2>Add Transaction</h2>
     <p>Record your financial activity</p>
     <form @onsubmit = "submitTransaction">
-        <!-- Transaction Type -->
+     
         <div class="input-group">
             <label for="transactionType">Transaction Type</label>
             <select id="transactionType" @bind="Transaction.TransactionType">

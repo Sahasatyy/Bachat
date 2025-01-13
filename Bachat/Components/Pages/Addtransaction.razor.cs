@@ -21,6 +21,7 @@ namespace Bachat.Components.Pages
             if (await TransactionService.CreateTransaction(Transaction))
                     {
                 message = "success";
+                Nav.NavigateTo("/home", forceLoad: true);
             }
             else
             {
