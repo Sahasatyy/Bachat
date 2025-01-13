@@ -1,0 +1,131 @@
+﻿@page "/adddebt"
+@using DataModel.Model
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+        background-color: beige;
+    }
+
+    .content {
+        max-width: 500px;
+        margin: 20px auto;
+        padding: 20px 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        background-color: #fff;
+    }
+
+    h2 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    p {
+        color: #777;
+        margin-bottom: 20px;
+        font-size: 14px;
+    }
+
+    .input-group {
+        margin-bottom: 15px;
+    }
+
+        .input-group label {
+            display: block;
+            font-size: 12px;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .input-group input,
+        .input-group textarea,
+        .input-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+    .buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+
+        .buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+    .save-btn {
+        background-color: #0066ff;
+        color: #fff;
+    }
+
+    .cancel-btn {
+        background-color: #ddd;
+        color: #555;
+    }
+</style>
+
+<div class="content" id="addDebtForm">
+    <h2>Add Debt</h2>
+    <p>Record your debt transactions</p>
+    <form @onsubmit="submitDebt">
+
+        <!-- Amount -->
+        <div class="input-group">
+            <label for="amount">Amount</label>
+            <input type="text" id="amount" placeholder="Rs.0.00" @bind="Debt.DebtAmount" />
+        </div>
+
+        <!-- Notes -->
+        <div class="input-group">
+            <label for="source">Source</label>
+            <textarea id="source" rows="3" placeholder="Add any debt source..." @bind="Debt.DebtSource"></textarea>
+        </div>
+
+        <!-- Notes -->
+        <!-- Start Date -->
+        <div class="input-group">
+            <label for="startdate">Start Date</label>
+            <input type="date" id="startdate" @bind="Debt.DebtStartDate" />
+        </div>
+
+        <!-- Due Date -->
+        <div class="input-group">
+            <label for="duedate">Due Date</label>
+            <input type="date" id="duedate" @bind="Debt.DebtDueDate" />
+        </div>
+
+        <!-- Notes -->
+        <div class="input-group">
+            <label for="notes">Notes (Optional)</label>
+            <textarea id="notes" rows="3" placeholder="Add any additional details..." @bind="Debt.DebtNotes"></textarea>
+        </div>
+
+        <!-- Buttons -->
+        <div class="buttons">
+            <button class="save-btn" type="submit">Save debt transaction</button>
+            <button class="cancel-btn" @onclick="cancel">Cancel</button>
+        </div>
+    </form>
+    @if (message == "success")
+    {
+        <div class="alert-success"> @message</div>
+    }
+    else
+    {
+        <div class="alert-danger"> @message</div>
+    }
+</div>

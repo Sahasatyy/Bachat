@@ -1,7 +1,5 @@
 
 using DataModel.Model;
-using MudBlazor.Charts;
-using System.Transactions;
 namespace Bachat.Components.Pages
 
 {
@@ -9,10 +7,13 @@ namespace Bachat.Components.Pages
     {
 
         private List<TransactionModel> Transactions = new();
-        private bool? _isDeleted = null;
+        private List<DebtModel> Debts = new();
+        private bool? _isDeletedTransaction = null;
+        private bool? _isDeletedDebt = null;
         protected async override void OnInitialized()
         {
            Transactions = await TransactionService.GetTransaction();
+           Debts = await DebtService.GetDebt();
         }
 
 
@@ -31,11 +32,37 @@ namespace Bachat.Components.Pages
             }
         }
 
+        private async Task<List<DebtModel>> GetDebt()
+        {
+            try
+            {
+                Debts = await DebtService.GetDebt();
+
+                return Debts;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception();
+            }
+        }
+
         private async Task DeleteTransaction(Guid TranctionID)
         {
             try
             {
-                _isDeleted = await TransactionService.DeleteTransaction(TranctionID);
+                _isDeletedTransaction = await TransactionService.DeleteTransaction(TranctionID);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception();
+            }
+        }
+        private async Task DeleteDebt(Guid DebtID)
+        {
+            try
+            {
+                _isDeletedDebt = await DebtService.DeleteDebt(DebtID);
             }
             catch (Exception ex)
             {

@@ -132,6 +132,65 @@
                 color: #FF0000; 
             }
 
+    .Debt-card h4 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .debt-item {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+        padding: 10px;
+        border: 1px solid #eee;
+        border-radius: 5px;
+    }
+
+        .debt-item table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .debt-item th,
+        .debt-item td {
+            padding: 10px 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        .debt-item th {
+            background-color: #f9f9f9;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .debt-item td {
+            font-size: 14px;
+            color: #333;
+        }
+
+        .debt-item .amount {
+            font-weight: bold;
+        }
+
+        .debt-item button {
+            background-color: transparent;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+            .debt-item button.edit {
+                color: #007BFF;
+            }
+
+            .debt-item button.delete {
+                color: #FF0000;
+            }
+
+
 
 </style>
 
@@ -193,6 +252,42 @@
                     </td>
                 </tr>
             }
+        </tbody>
+        </table>
+        </div>
+        </div>
+
+        <div class="Debt-card">
+    <h4>Debt History</h4>
+    <div class="debt-item">
+        <table>
+            <thead>
+
+                <tr>
+                    <th>Amount</th>
+                    <th>Startdate</th>
+                    <th>Duedate</th>
+                    <th>Source</th>
+                    <th>Notes</th>
+                    <th>Actions</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                @foreach (var debt in Debts)
+                {
+                    <tr>
+                        <td>@debt.DebtAmount</td>
+                        <td>@debt.DebtStartDate</td>
+                        <td>@debt.DebtDueDate</td>
+                        <td>@debt.DebtSource</td>
+                        <td>@debt.DebtNotes</td>
+                        <td>
+                            <button class="edit">EDIT</button>
+                                <button class="delete" @onclick="()=>DeleteDebt(debt.DebtId)">CLEARED</button>
+                        </td>
+                    </tr>
+                }
         </tbody>
         </table>
         </div>

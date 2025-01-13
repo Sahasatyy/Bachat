@@ -8,6 +8,11 @@ namespace Bachat.Components.Layout
             Nav.NavigateTo("/addtransaction");
         }
 
+        private void adddebt()
+        {
+            Nav.NavigateTo("/adddebt");
+        }
+
         private bool logout_confirm { get; set; }
 
         private void cancelLogout()
