@@ -21,6 +21,8 @@ namespace DataModel.Model
 
         public string DebtSource { get; set; }
 
+        public bool IsCleared { get; set; } = false;
+
 
 
     }

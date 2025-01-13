@@ -7,7 +7,7 @@
 <style>
 
     body {
-        background-color: azure;
+    background-color: azure;
     }
 
 
@@ -75,120 +75,120 @@
     }
 
     .Transactions-card h4 {
-        font-size: 18px;
-        margin-bottom: 10px;
+    font-size: 18px;
+    margin-bottom: 10px;
     }
 
     .transaction-item {
-        display: flex;
-        flex-direction: column; 
-        margin-bottom: 10px;
-        padding: 10px;
-        border: 1px solid #eee;
-        border-radius: 5px;
+    display: flex;
+    flex-direction: column; 
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 5px;
     }
 
-        .transaction-item table {
-            width: 100%;
-            border-collapse: collapse; 
-            margin-top: 10px;
-        }
+    .transaction-item table {
+    width: 100%;
+    border-collapse: collapse; 
+    margin-top: 10px;
+    }
 
-        .transaction-item th,
-        .transaction-item td {
-            padding: 10px 15px; 
-            text-align: left;
-            border: 1px solid #ddd; 
-        }
+    .transaction-item th,
+    .transaction-item td {
+    padding: 10px 15px; 
+    text-align: left;
+    border: 1px solid #ddd; 
+    }
 
-        .transaction-item th {
-            background-color: #f9f9f9;
-            font-size: 14px;
-            font-weight: bold;
-        }
+    .transaction-item th {
+    background-color: #f9f9f9;
+    font-size: 14px;
+    font-weight: bold;
+    }
 
-        .transaction-item td {
-            font-size: 14px;
-            color: #333;
-        }
+    .transaction-item td {
+    font-size: 14px;
+    color: #333;
+    }
 
-        .transaction-item .amount {
-            font-weight: bold;
-        }
+    .transaction-item .amount {
+    font-weight: bold;
+    }
 
-        .transaction-item button {
-            background-color: transparent;
-            border: none;
-            font-size: 16px;
-            cursor: pointer;
-            margin-left: 5px;
-        }
+    .transaction-item button {
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 5px;
+    }
 
-            .transaction-item button.edit {
-                color: #007BFF; 
-            }
+    .transaction-item button.edit {
+    color: #007BFF; 
+    }
 
-            .transaction-item button.delete {
-                color: #FF0000; 
-            }
+    .transaction-item button.delete {
+    color: #FF0000; 
+    }
 
     .Debt-card h4 {
-        font-size: 18px;
-        margin-bottom: 10px;
+    font-size: 18px;
+    margin-bottom: 10px;
     }
 
     .debt-item {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 10px;
-        padding: 10px;
-        border: 1px solid #eee;
-        border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 5px;
     }
 
-        .debt-item table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
+    .debt-item table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    }
 
-        .debt-item th,
-        .debt-item td {
-            padding: 10px 15px;
-            text-align: left;
-            border: 1px solid #ddd;
-        }
+    .debt-item th,
+    .debt-item td {
+    padding: 10px 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+    }
 
-        .debt-item th {
-            background-color: #f9f9f9;
-            font-size: 14px;
-            font-weight: bold;
-        }
+    .debt-item th {
+    background-color: #f9f9f9;
+    font-size: 14px;
+    font-weight: bold;
+    }
 
-        .debt-item td {
-            font-size: 14px;
-            color: #333;
-        }
+    .debt-item td {
+    font-size: 14px;
+    color: #333;
+    }
 
-        .debt-item .amount {
-            font-weight: bold;
-        }
+    .debt-item .amount {
+    font-weight: bold;
+    }
 
-        .debt-item button {
-            background-color: transparent;
-            border: none;
-            font-size: 16px;
-            cursor: pointer;
-            margin-left: 5px;
-        }
+    .debt-item button {
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 5px;
+    }
 
-            .debt-item button.edit {
-                color: #007BFF;
-            }
+    .debt-item button.edit {
+    color: #007BFF;
+    }
 
-            .debt-item button.delete {
-                color: #FF0000;
-            }
+    .debt-item button.delete {
+    color: #FF0000;
+    }
 
 
 
@@ -197,27 +197,27 @@
 <div class="stats-grid">
     <div class="stat-card">
         <h3>Total Inflow</h3>
-        <p>Rs 24,500.00</p>
+        <p>Rs. @totalcredit</p>
     </div>
     <div class="stat-card">
         <h3>Total Outflow</h3>
-        <p>Rs 18,300.00</p>
+        <p>Rs. @totaldebit</p>
     </div>
     <div class="stat-card">
         <h3>Current Balance</h3>
-        <p>Rs 6,200.00</p>
+        <p>Rs. @currentBalance</p>
     </div>
     <div class="stat-card">
         <h3>Total Debts</h3>
-        <p>Rs 8,500.00</p>
+        <p>Rs. @totaldebt</p>
     </div>
     <div class="stat-card">
         <h3>Cleared Debts</h3>
-        <p>Rs 3,200.00</p>
+        <p>Rs. @cleareddebt</p>
     </div>
     <div class="stat-card">
         <h3>Remaining Debts</h3>
-        <p>Rs 5,300.00</p>
+        <p>Rs. @remainingdebt</p>
     </div>
 </div>
 
@@ -240,24 +240,24 @@
             <tbody>
                 @foreach (var transaction in Transactions)
                 {
-                <tr>
-                    <td>@transaction.TransactionDate</td>
-                    <td>@transaction.TransactionAmount</td>
-                    <td>@transaction.TransactionType</td>
-                    <td>@transaction.TransactionTag</td>
-                    <td>@transaction.TransactionNotes</td>
-                    <td>
-                        <button class="edit">EDIT</button>
+                    <tr>
+                        <td>@transaction.TransactionDate</td>
+                        <td>@transaction.TransactionAmount</td>
+                        <td>@transaction.TransactionType</td>
+                        <td>@transaction.TransactionTag</td>
+                        <td>@transaction.TransactionNotes</td>
+                        <td>
+                            <button class="edit">EDIT</button>
                             <button class="delete" @onclick="()=>DeleteTransaction(transaction.TransactionId)">DELETE</button>
-                    </td>
-                </tr>
-            }
-        </tbody>
+                        </td>
+                    </tr>
+                }
+            </tbody>
         </table>
-        </div>
-        </div>
+    </div>
+</div>
 
-        <div class="Debt-card">
+<div class="Debt-card">
     <h4>Debt History</h4>
     <div class="debt-item">
         <table>
@@ -284,14 +284,20 @@
                         <td>@debt.DebtNotes</td>
                         <td>
                             <button class="edit">EDIT</button>
-                                <button class="delete" @onclick="()=>DeleteDebt(debt.DebtId)">CLEARED</button>
+                            <button class="delete" @onclick="()=>DeleteDebt(debt.DebtId)">CLEARED</button>
                         </td>
                     </tr>
                 }
-        </tbody>
+            </tbody>
         </table>
-        </div>
-        </div>
+    </div>
+</div>
+@if (Debts.Any())
+{
+    <MudChart ChartType="ChartType.Pie" InputData="@Debts.Select(d => Double.Parse(d.DebtAmount ?? "0")).ToArray()" @bind-SelectedIndex="Index" InputLabels="@labels" Width="300px" Height="300px" />
+
+}
+
 
 
 

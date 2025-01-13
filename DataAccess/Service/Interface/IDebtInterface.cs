@@ -13,5 +13,7 @@ namespace DataAccess.Service.Interface
         Task<List<DebtModel>> GetDebt();
 
         Task<DebtModel> GetDebtById(Guid DebtId);
+
+        Task<List<DebtModel>> GetClearedDebt();
     }
 }

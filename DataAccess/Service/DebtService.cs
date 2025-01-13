@@ -33,16 +33,21 @@ namespace DataAccess.Service
         public async Task<bool> DeleteDebt(Guid DebtId)
         {
             var debts = _debts.FirstOrDefault(d => d.DebtId == DebtId);
-
+            debts.IsCleared = true;
             _debts.Remove(debts);
-
+            _debts.Add(debts);
             SaveDebts(_debts);
             return true;
         }
 
+        public async Task<List<DebtModel>> GetClearedDebt()
+        {
+            return _debts.Where(x => x.IsCleared == true).ToList();
+        }
+
         public async Task<List<DebtModel>> GetDebt()
         {
-            return _debts;
+            return _debts.Where(x => x.IsCleared != true).ToList();
         }
 
         public async Task<DebtModel> GetDebtById(Guid DebtId)
@@ -61,6 +66,7 @@ namespace DataAccess.Service
                 debts.DebtDueDate = debt.DebtDueDate;
                 debts.DebtNotes = debt.DebtNotes;
                 debts.DebtSource = debt.DebtSource;
+              
 
                 SaveDebts(_debts);
                 return true;

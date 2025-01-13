@@ -10,10 +10,28 @@ namespace Bachat.Components.Pages
         private List<DebtModel> Debts = new();
         private bool? _isDeletedTransaction = null;
         private bool? _isDeletedDebt = null;
-        protected async override void OnInitialized()
+
+        private double totaldebt = 0;
+        private double totalcredit = 0; 
+        private double totaldebit = 0;
+        private double currentBalance = 0;
+        private double cleareddebt = 0;
+        private double remainingdebt = 0;
+
+        string[] labels = { "totaldebts", "totalcredits", "totaldebits" };
+        public int Index { get; set; } = -1;
+
+        protected async override Task OnInitializedAsync()
         {
            Transactions = await TransactionService.GetTransaction();
            Debts = await DebtService.GetDebt();
+           var localdebt = await DebtService.GetClearedDebt();
+           cleareddebt = localdebt.Sum(x => Convert.ToDouble(x.DebtAmount));
+           totaldebt = Debts.Sum(x => Convert.ToDouble(x.DebtAmount));
+           totaldebit = Transactions.Where(x => x.TransactionType == TransactionType.Debit).Sum(x => Convert.ToDouble(x.TransactionAmount));
+           totalcredit = Transactions.Where(x => x.TransactionType == TransactionType.Credit).Sum(x => Convert.ToDouble(x.TransactionAmount));
+           currentBalance = totalcredit - totaldebit;
+           remainingdebt = totaldebt - cleareddebt;
         }
 
 
@@ -63,11 +81,18 @@ namespace Bachat.Components.Pages
             try
             {
                 _isDeletedDebt = await DebtService.DeleteDebt(DebtID);
+                Debts = await DebtService.GetDebt();
+                var localdebt = await DebtService.GetClearedDebt();
+                cleareddebt = localdebt.Sum(x => Convert.ToDouble(x.DebtAmount));
+                StateHasChanged();
+
             }
             catch (Exception ex)
             {
                 throw new Exception();
             }
         }
+
+
     }
 }
