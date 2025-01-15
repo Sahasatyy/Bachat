@@ -247,7 +247,7 @@
                         <td>@transaction.TransactionTag</td>
                         <td>@transaction.TransactionNotes</td>
                         <td>
-                            <button class="edit">EDIT</button>
+                            <button class="edit" @onclick="() => UpdateTransactions(transaction.TransactionId)">EDIT</button>
                             <button class="delete" @onclick="()=>DeleteTransaction(transaction.TransactionId)">DELETE</button>
                         </td>
                     </tr>
@@ -283,7 +283,7 @@
                         <td>@debt.DebtSource</td>
                         <td>@debt.DebtNotes</td>
                         <td>
-                            <button class="edit">EDIT</button>
+                                <button class="edit" @onclick="() => UpdateDebts(debt.DebtId)">EDIT</button>
                             <button class="delete" @onclick="()=>DeleteDebt(debt.DebtId)">CLEARED</button>
                         </td>
                     </tr>
@@ -292,11 +292,45 @@
         </table>
     </div>
 </div>
-@if (Debts.Any())
-{
-    <MudChart ChartType="ChartType.Pie" InputData="@Debts.Select(d => Double.Parse(d.DebtAmount ?? "0")).ToArray()" @bind-SelectedIndex="Index" InputLabels="@labels" Width="300px" Height="300px" />
 
-}
+<div class="chart-container">
+    <div class="chart-heading">
+        <h3>Top Ten Income</h3>
+    </div>
+    <MudChart ChartType="ChartType.Donut" Width="300px" Height="300px"
+              InputData="@Top10income"
+              InputLabels="@Top10incomelabel"></MudChart>
+
+    <div class="chart-heading">
+        <h3>Top Ten Expenses</h3>
+    </div>
+    <MudChart ChartType="ChartType.Donut" Width="300px" Height="300px"
+              InputData="@Top10expense"
+              InputLabels="@Top10expenselabel"></MudChart>
+</div>
+
+<style>
+    .chart-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .chart-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .chart-heading {
+        margin-bottom: 10px;
+    }
+</style>
+
+
 
 
 

@@ -1,0 +1,124 @@
+﻿@using DataModel.Model
+@page "/update-transaction/{transactionId:guid}"
+<h3>Edit Transaction</h3>
+
+@if (Transaction == null)
+{
+        <p>Loading...</p>
+}
+else
+{
+    <style>
+        .transaction-form {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-family: Arial, sans-serif;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+            .form-group label {
+                display: block;
+                font-size: 14px;
+                margin-bottom: 5px;
+                color: #333;
+            }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+            .form-control:focus {
+                border-color: #007bff;
+                outline: none;
+                box-shadow: 0 0 4px rgba(0, 123, 255, 0.25);
+            }
+
+        .btn-submit {
+            display: block;
+            width: 100%;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            .btn-submit:hover {
+                background-color: #0056b3;
+            }
+
+            .btn-submit:active {
+                background-color: #003f7f;
+            }
+
+    </style>
+    <form @onsubmit="SaveTransaction" class="transaction-form">
+        <div class="form-group">
+            <label>Date:</label>
+            <input type="date" @bind="Transaction.TransactionDate" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Amount:</label>
+            <input type="number" @bind="Transaction.TransactionAmount" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="transactionType">Transaction Type:</label>
+            <select id="transactionType" @bind="Transaction.TransactionType" class="form-control">
+                <option>Select a transaction type</option>
+                @foreach (var tag in Enum.GetValues(typeof(TransactionType)))
+                {
+                    <option value="@tag">@tag</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Tag:</label>
+            <input type="text" @bind="Transaction.TransactionTag" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Notes:</label>
+            <input type="text" @bind="Transaction.TransactionNotes" class="form-control" />
+        </div>
+        <button type="submit" class="btn-submit">Save</button>
+    </form>
+
+}
+
+@code{
+    [Parameter]
+    public Guid TransactionId { get; set; }
+
+    private TransactionModel Transaction;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Transaction = await TransactionService.GetTransactionById(TransactionId);
+    }
+
+    private async Task SaveTransaction()
+    {
+        await TransactionService.UpdateTransaction(Transaction, TransactionId);
+
+        // Navigate back to the main page
+        Nav.NavigateTo("/home");
+    }
+}
+
+
+

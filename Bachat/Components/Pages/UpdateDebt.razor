@@ -1,0 +1,118 @@
+﻿@using DataModel.Model
+@page "/update-debt/{debtId:guid}"
+<h3>Edit Debt Transaction</h3>
+
+@if (Debt == null)
+{
+            <p>Loading...</p>
+}
+else
+{
+        <style>
+            .transaction-form {
+                max-width: 500px;
+                margin: 20px auto;
+                padding: 20px;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                background-color: #f9f9f9;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                font-family: Arial, sans-serif;
+            }
+
+            .form-group {
+                margin-bottom: 15px;
+            }
+
+                .form-group label {
+                    display: block;
+                    font-size: 14px;
+                    margin-bottom: 5px;
+                    color: #333;
+                }
+
+            .form-control {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                font-size: 14px;
+                box-sizing: border-box;
+            }
+
+                .form-control:focus {
+                    border-color: #007bff;
+                    outline: none;
+                    box-shadow: 0 0 4px rgba(0, 123, 255, 0.25);
+                }
+
+            .btn-submit {
+                display: block;
+                width: 100%;
+                padding: 10px 15px;
+                background-color: #007bff;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                font-size: 16px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+                .btn-submit:hover {
+                    background-color: #0056b3;
+                }
+
+                .btn-submit:active {
+                    background-color: #003f7f;
+                }
+
+        </style>
+        <form @onsubmit="SaveDebt" class="debt-form">
+            <div class="form-group">
+                <label>StartDate:</label>
+                <input type="date" @bind="Debt.DebtStartDate" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>DueDate:</label>
+                <input type="date" @bind="Debt.DebtDueDate" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Amount:</label>
+                <input type="number" @bind="Debt.DebtAmount" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Source:</label>
+                <input type="text" @bind="Debt.DebtSource" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Notes:</label>
+                <input type="text" @bind="Debt.DebtNotes" class="form-control" />
+            </div>
+            <button type="submit" class="btn-submit">Save</button>
+        </form>
+
+}
+
+@code {
+    [Parameter]
+    public Guid DebtId { get; set; }
+
+    private DebtModel Debt;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Debt = await DebtService.GetDebtById(DebtId);
+    }
+
+    private async Task SaveDebt()
+    {
+        await DebtService.UpdateDebt(Debt, DebtId);
+
+        // Navigate back to the main page
+        Nav.NavigateTo("/home");
+    }
+}
+
+
+

@@ -27,6 +27,7 @@ namespace Bachat
             builder.Services.AddScoped<ITransactionInterface, TransactionService>();
             builder.Services.AddScoped<IDebtInterface, DebtService>();
 
+
 #endif
 
             return builder.Build();

@@ -19,6 +19,7 @@ namespace DataModel.Model
         rent,
         emi,
         party,
-        salary
+        salary,
+        other
     }
 }

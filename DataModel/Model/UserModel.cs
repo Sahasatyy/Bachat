@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DataModel.Model
+﻿namespace DataModel.Model
 {
     public class UserModel
     {
@@ -13,6 +6,6 @@ namespace DataModel.Model
 
         public string Password { get; set; }
 
-        public string PreferredCurrency { get; set; }
+        public string PreferredCurrency { get; set; }   
     }
 }
