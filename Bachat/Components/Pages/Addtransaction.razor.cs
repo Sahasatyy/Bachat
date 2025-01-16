@@ -27,9 +27,9 @@ namespace Bachat.Components.Pages
             }
             else
             {
-                // Handle the case where the tag is not a predefined enum value
+                
                 Console.WriteLine("Selected tag is not a predefined TransactionTag.");
-                Transaction.TransactionTag = TransactionTag.other; // Assign a fallback enum value
+                Transaction.TransactionTag = TransactionTag.other;
             }
 
 
