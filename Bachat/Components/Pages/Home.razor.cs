@@ -23,7 +23,7 @@ namespace Bachat.Components.Pages
         private double cleareddebt = 0;
         private double remainingdebt = 0;
 
-        string[] labels = { "totaldebts", "totalcredits", "totaldebits" };
+
         public int Index { get; set; } = -1;
 
         protected async override Task OnInitializedAsync()

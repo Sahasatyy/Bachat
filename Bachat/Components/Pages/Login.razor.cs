@@ -6,8 +6,17 @@ namespace Bachat.Components.Pages
     {
         private string? ErrorMessage;
         public UserModel user { get; set; } = new();
+
         private async Task HandleLogin()
         {
+            // Basic client-side validation
+            if (string.IsNullOrWhiteSpace(user.Username) || string.IsNullOrWhiteSpace(user.Password))
+            {
+                ErrorMessage = "Username and password cannot be empty.";
+                return;
+            }
+
+            // Delegate server-side validation to UserService
             if (await UserService.Login(user))
             {
                 Nav.NavigateTo("/home");
@@ -17,7 +26,5 @@ namespace Bachat.Components.Pages
                 ErrorMessage = "Invalid username or password.";
             }
         }
-
     }
 }
-
